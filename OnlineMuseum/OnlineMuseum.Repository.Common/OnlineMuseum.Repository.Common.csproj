@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVehicleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineMuseum.Models.Common\OnlineMuseum.Models.Common.csproj">
+      <Project>{3883d861-7d1c-43ce-97b5-2c00e097338a}</Project>
+      <Name>OnlineMuseum.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Models\OnlineMuseum.Models.csproj">
+      <Project>{769e511d-222e-48d6-b9c7-576462b37d24}</Project>
+      <Name>OnlineMuseum.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

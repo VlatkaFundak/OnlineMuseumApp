@@ -1,11 +1,25 @@
-﻿
+﻿@model IEnumerable<OnlineMuseum.Models.VehicleModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="heading">Welcome to the first online museum</h2>
 
+<div class="test">
+    <div class="category">
+        @Html.ActionLink("Click to enter", "MuseumCategories", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="down">
+        <div class="leftButtons">
+            @Html.ActionLink("New vehicle", "NewVehicle", null, new { @class = "btn btn-primary" })
+        </div>
+
+        <div class="rightButton">
+            @Html.ActionLink("New category", "NewCategory", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
 
 
 

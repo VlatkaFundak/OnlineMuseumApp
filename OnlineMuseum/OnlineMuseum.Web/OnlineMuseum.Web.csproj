@@ -117,6 +117,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Views\Home\MuseumCategories.cshtml" />
+    <Content Include="Views\Home\NewVehicle.cshtml" />
+    <Content Include="Views\Home\NewCategory.cshtml" />
+    <Content Include="Views\Home\DetailsOfTheVehicle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -129,17 +133,21 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnlineMuseum.DAL\OnlineMuseum.DAL.csproj">
-      <Project>{6801ef07-5372-4ef2-9522-cc6439c840e1}</Project>
-      <Name>OnlineMuseum.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OnlineMuseum.Models.Common\OnlineMuseum.Models.Common.csproj">
       <Project>{3883d861-7d1c-43ce-97b5-2c00e097338a}</Project>
       <Name>OnlineMuseum.Models.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OnlineMuseum.Repository\OnlineMuseum.Repository.csproj">
-      <Project>{b29efaaf-93eb-4807-810b-76cec318ef35}</Project>
-      <Name>OnlineMuseum.Repository</Name>
+    <ProjectReference Include="..\OnlineMuseum.Models\OnlineMuseum.Models.csproj">
+      <Project>{769e511d-222e-48d6-b9c7-576462b37d24}</Project>
+      <Name>OnlineMuseum.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Services.Common\OnlineMuseum.Services.Common.csproj">
+      <Project>{412ba08c-c874-43d8-988e-2ade0ed48bdf}</Project>
+      <Name>OnlineMuseum.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Services\OnlineMuseum.Services.csproj">
+      <Project>{e880ee9e-1ca1-4958-9bc0-8e5a0a647691}</Project>
+      <Name>OnlineMuseum.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

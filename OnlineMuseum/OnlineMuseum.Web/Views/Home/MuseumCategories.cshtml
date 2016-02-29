@@ -1,0 +1,22 @@
+﻿@model IEnumerable<OnlineMuseum.Models.VehicleCategory>
+@{
+    ViewBag.Title = "MuseumCategories";
+}
+
+<h2>MuseumCategories</h2>
+
+<table>
+
+    @foreach (var item in Model)
+        {
+        <tr>
+            <td onclick="location.href ='@Url.Action("DetailsOfTheVehicle", "Home", new { id = item.Id })'">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+        }
+</table>
+
+@Html.ActionLink("Back","Back")
+
+

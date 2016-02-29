@@ -1,0 +1,23 @@
+﻿@model OnlineMuseum.Models.VehicleModel
+@{
+    ViewBag.Title = "NewVehicle";
+}
+
+<h2>NewVehicle</h2>
+
+<h2>Add new vehicle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBoxFor(item => item.Name)
+    
+    @Html.TextBoxFor(item => item.YearOfProduction)
+    
+    @Html.TextBoxFor(item => item.Description)
+    
+    @Html.TextBoxFor(item => item.FunFacts)
+    
+    
+}
+
+@Html.ActionLink("Back","Back")

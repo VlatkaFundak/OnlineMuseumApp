@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineMuseum.Models.VehicleModel>
+@{
+    ViewBag.Title = "DetailsOfTheVehicle";
+}
+
+<h2>List of Vehicles</h2>
+
+
+@Html.ActionLink("Back","BackToCategories")
+
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(itemModel => item.VehicleMaker.Name)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayFor(itemModel => item.Name)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(itemModel => item.FunFacts)
+            </td>
+
+        </tr>
+    }
+
+
+
+</table>

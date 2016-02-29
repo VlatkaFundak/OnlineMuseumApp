@@ -1,18 +1,47 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color:lightblue;
 }
 
-/* Set padding to keep content from hitting the edges */
+ /*Set padding to keep content from hitting the edges*/ 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+ /*Set width on the form input elements since they're 100% wide by default*/ 
 input,
 select,
 textarea {
     max-width: 280px;
 }
 
+.heading {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.category {
+   text-align: center;
+}
+
+.leftButtons {
+    float: left;
+}
+
+.rightButton {
+    float: right;
+}
+
+.test {
+    margin-top: 100px;
+}
+
+.down {
+    margin-top: 100px;
+}
+
+a {
+    text-decoration: none;
+}

@@ -40,6 +40,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineMuseum.Models.Common\OnlineMuseum.Models.Common.csproj">
+      <Project>{3883d861-7d1c-43ce-97b5-2c00e097338a}</Project>
+      <Name>OnlineMuseum.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Models\OnlineMuseum.Models.csproj">
+      <Project>{769e511d-222e-48d6-b9c7-576462b37d24}</Project>
+      <Name>OnlineMuseum.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Repository.Common\OnlineMuseum.Repository.Common.csproj">
+      <Project>{538215c3-c1bc-45ac-b970-55ec3e886115}</Project>
+      <Name>OnlineMuseum.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Repository\OnlineMuseum.Repository.csproj">
+      <Project>{b29efaaf-93eb-4807-810b-76cec318ef35}</Project>
+      <Name>OnlineMuseum.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineMuseum.Services.Common\OnlineMuseum.Services.Common.csproj">
+      <Project>{412ba08c-c874-43d8-988e-2ade0ed48bdf}</Project>
+      <Name>OnlineMuseum.Services.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

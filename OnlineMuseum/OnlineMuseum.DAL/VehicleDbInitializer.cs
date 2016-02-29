@@ -8,7 +8,7 @@ using OnlineMuseum.Models;
 
 namespace OnlineMuseum.DAL
 {
-    public class VehicleDbInitializer: DropCreateDatabaseAlways<VehicleContext>
+    public class VehicleDbInitializer: DropCreateDatabaseIfModelChanges<VehicleContext>
     {
         protected override void Seed(VehicleContext context)
         {
