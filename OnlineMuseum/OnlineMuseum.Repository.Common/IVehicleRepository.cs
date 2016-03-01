@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Models;
+using OnlineMuseum.Common;
 
 namespace OnlineMuseum.Repository.Common
 {
@@ -15,19 +16,12 @@ namespace OnlineMuseum.Repository.Common
     {
         Task<IVehicleModel> GetOneVehicleAsync(Guid id);
 
-        Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync();
+        Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(Paging paging, Sorting sortOrder, Filtering searchVehicle);
 
-        Task<IEnumerable<IVehicleModel>> GetAllVehiclesInCategory(Guid id);
+        Task InsertVehicleAsync(VehicleModel vehicleModel);
 
-        Task NewVehicleAsync(VehicleModel vehicleModel);
-
-        Task UpdateBaseAsync();
+        Task UpdateVehicleAsync(IVehicleModel vehicleModel);
 
         Task DeleteVehicleAsync(Guid id);
-
-        Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync();
-
-        Task<IVehicleCategory> GetOneCategory(Guid id);
-
     }
 }

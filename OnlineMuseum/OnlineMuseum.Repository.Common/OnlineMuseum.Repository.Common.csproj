@@ -39,10 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICategoryRepository.cs" />
+    <Compile Include="IMakerRepository.cs" />
+    <Compile Include="ITimeRepository.cs" />
     <Compile Include="IVehicleRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineMuseum.Common\OnlineMuseum.Common.csproj">
+      <Project>{a38f199a-d618-48d4-9705-e7b731f03167}</Project>
+      <Name>OnlineMuseum.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineMuseum.Models.Common\OnlineMuseum.Models.Common.csproj">
       <Project>{3883d861-7d1c-43ce-97b5-2c00e097338a}</Project>
       <Name>OnlineMuseum.Models.Common</Name>

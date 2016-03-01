@@ -34,6 +34,8 @@ namespace OnlineMuseum.Models
         /// </summary>
         public string ImageUrl { get; set; }
 
+        public Guid VehicleMakerId { get; set; }
+
         #endregion
     }
 }

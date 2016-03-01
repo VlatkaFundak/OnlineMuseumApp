@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.EntityFramework">
+      <HintPath>..\packages\PagedList.EntityFramework.1.0.1\lib\net45\PagedList.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,7 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryRepository.cs" />
+    <Compile Include="MakerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeRepository.cs" />
     <Compile Include="VehicleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +66,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnlineMuseum.Common\OnlineMuseum.Common.csproj">
+      <Project>{a38f199a-d618-48d4-9705-e7b731f03167}</Project>
+      <Name>OnlineMuseum.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineMuseum.DAL\OnlineMuseum.DAL.csproj">
       <Project>{6801ef07-5372-4ef2-9522-cc6439c840e1}</Project>
       <Name>OnlineMuseum.DAL</Name>

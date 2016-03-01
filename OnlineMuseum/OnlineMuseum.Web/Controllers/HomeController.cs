@@ -5,21 +5,40 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 
+using OnlineMuseum.Models;
+using OnlineMuseum.Services;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Services.Common;
-using OnlineMuseum.Services;
 
 namespace OnlineMuseum.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IVehicleService vehicleService;
+        #region Fields
 
+        /// <summary>
+        /// Vehicle service field.
+        /// </summary>
+        private IVehicleService vehicleService;
+        private ICategoryService categoryService;
+        private IMakerService makerService;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Home controller constructor.
+        /// </summary>
         public HomeController()
         {
              vehicleService = new VehicleService();
+             categoryService = new CategoryService();
+             makerService = new MakerService();
         }
-                
+
+        #endregion
+
         // GET: Home
         public ActionResult Index()
         {
@@ -38,25 +57,37 @@ namespace OnlineMuseum.Web.Controllers
 
         public async Task<ActionResult> MuseumCategories()
         {
-            return View(await vehicleService.GetAllCategoriesAsync());
+            return View(await categoryService.GetAllCategoriesAsync());
         }
 
-        [HttpGet]
-        public ActionResult NewVehicle()
+        public async Task<ActionResult> NewVehicle()
         {
+            ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
+            ViewBag.MakerCategories = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+
+            return View(new VehicleModel());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> NewVehicle(VehicleModel vehicle)
+        {
+            if (ModelState.IsValid)
+            {
+                await vehicleService.InsertVehicleAsync(vehicle);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
+            ViewBag.MakerCategories = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+
             return View();
         }
+
 
         public ActionResult NewCategory()
         {
             return View();
         }
-
-        public async Task<ActionResult> DetailsOfTheVehicle(Guid id)
-        {
-            return View(await vehicleService.GetAllVehiclesInCategory(id));
-        }
-
 
     }
 }

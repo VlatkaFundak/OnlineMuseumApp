@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuseum.Services.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuseum.Web", "OnlineMuseum.Web\OnlineMuseum.Web.csproj", "{325C851C-73A5-4C2D-A3F0-2DC2F4A77791}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuseum.Common", "OnlineMuseum.Common\OnlineMuseum.Common.csproj", "{A38F199A-D618-48D4-9705-E7B731F03167}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{325C851C-73A5-4C2D-A3F0-2DC2F4A77791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{325C851C-73A5-4C2D-A3F0-2DC2F4A77791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{325C851C-73A5-4C2D-A3F0-2DC2F4A77791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38F199A-D618-48D4-9705-E7B731F03167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38F199A-D618-48D4-9705-E7B731F03167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38F199A-D618-48D4-9705-E7B731F03167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38F199A-D618-48D4-9705-E7B731F03167}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

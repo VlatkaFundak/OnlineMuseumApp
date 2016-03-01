@@ -34,9 +34,14 @@ namespace OnlineMuseum.Models.Common
         int YearOfProduction { get; set; }
 
         /// <summary>
-        /// Gets or sets image url.
+        /// Gets or sets image url of the past.
         /// </summary>
-        string ImageUrl { get; set; }
+        string ImageUrlOfThePast { get; set; }
+
+        /// <summary>
+        /// Gets or sets image url of the present.
+        /// </summary>
+        string ImageUrlOfThePresent { get; set; }
 
         /// <summary>
         /// Gest or sets description.
@@ -47,16 +52,6 @@ namespace OnlineMuseum.Models.Common
         /// Gest or sets fun facts.
         /// </summary>
         string FunFacts { get; set; }
-
-        /// <summary>
-        /// Gets or sets time.
-        /// </summary>
-        Guid TimeCategoryId { get; set; }
-
-        /// <summary>
-        /// Gets or sets time.
-        /// </summary>
-        ITimeCategory TimeCategory { get; set; }
 
         /// <summary>
         /// Gets or sets vehicle type.
@@ -77,6 +72,16 @@ namespace OnlineMuseum.Models.Common
         /// Gets or sets maker of the vehicle.
         /// </summary>
         IVehicleMaker VehicleMaker { get; set; }
+
+        ///// <summary>
+        ///// Gets or sets time.
+        ///// </summary>
+        //Guid TimeCategoryId { get; set; }
+
+        ///// <summary>
+        ///// Gets or sets time.
+        ///// </summary>
+        //ITimeCategory TimeCategory { get; set; }
 
        #endregion
     }

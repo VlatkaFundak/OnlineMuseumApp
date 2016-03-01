@@ -5,11 +5,13 @@ using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
+using PagedList.EntityFramework;
 
+using OnlineMuseum.DAL;
+using OnlineMuseum.Common;
+using OnlineMuseum.Models;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Repository.Common;
-using OnlineMuseum.DAL;
-using OnlineMuseum.Models;
 
 namespace OnlineMuseum.Repository
 {
@@ -43,83 +45,38 @@ namespace OnlineMuseum.Repository
 
         public async Task<IVehicleModel> GetOneVehicleAsync(Guid id)
         {
-            try
-            {
-                return await vehicleContext.VehicleModels.FindAsync(id);
-            }
-            catch (Exception e)
-            {                
-                throw e;
-            }
+            return await vehicleContext.VehicleModels.FindAsync(id);
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync()
+        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(Paging paging, Sorting sortOrder, Filtering searchVehicle)
         {
-            try
-            {
-                return await vehicleContext.VehicleModels.ToListAsync();
-            }
-            catch (Exception e)
-            {                
-                throw e;
-            }
+            return await vehicleContext.VehicleModels
+                .Where(item => String.IsNullOrEmpty(searchVehicle.SearchVehicle) ? item != null : item.Name.Contains(searchVehicle.SearchVehicle))
+                .OrderBy(sortOrder.SortOrder)
+                .ToPagedListAsync(paging.PageNumber,paging.PageSize);
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesInCategory(Guid id)
-        {
-            return await vehicleContext.VehicleModels.Where(item => item.VehicleCategoryId == id).ToListAsync();
-        }
-
-        public async Task NewVehicleAsync(VehicleModel vehicleModel)
+        public async Task InsertVehicleAsync(VehicleModel vehicleModel)
         {
             vehicleModel.Id = Guid.NewGuid();
-            vehicleModel.Abrv = vehicleModel.Abrv.Substring(0, 3);
+            vehicleModel.Abrv = vehicleModel.Name.Substring(0, 3);
 
-            try
-            {
-                vehicleContext.VehicleModels.Add(vehicleModel);
-                await vehicleContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {                
-                throw e;
-            }
+            vehicleContext.VehicleModels.Add(vehicleModel);
+            await vehicleContext.SaveChangesAsync();
+
         }
 
-        public async Task UpdateBaseAsync()
+        public async Task UpdateVehicleAsync(IVehicleModel vehicle)
         {
-            try
-            {
-                await vehicleContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {                
-                throw e;
-            }
+            await vehicleContext.SaveChangesAsync(); 
         }
 
         public async Task DeleteVehicleAsync(Guid id)
         {
-            try
-            {
-                VehicleModel oneVehicle = await vehicleContext.VehicleModels.FindAsync(id);
-                vehicleContext.VehicleModels.Remove(oneVehicle);
-                await vehicleContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {                
-                throw e;
-            }
-        }
+            VehicleModel oneVehicle = await vehicleContext.VehicleModels.FindAsync(id);
+            vehicleContext.VehicleModels.Remove(oneVehicle);
+            await vehicleContext.SaveChangesAsync();
 
-        public async Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync()
-        {
-            return await vehicleContext.VehicleCategories.ToListAsync();
-        }
-
-        public async Task<IVehicleCategory> GetOneCategory(Guid id)
-        {
-            return await vehicleContext.VehicleCategories.FindAsync(id);
         }
 
         #endregion
