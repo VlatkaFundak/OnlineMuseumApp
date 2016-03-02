@@ -52,14 +52,14 @@ namespace OnlineMuseum.Services
             return await vehicleRepository.GetAllVehiclesAsync(paging, searchVehicle);
         }
 
-        public async Task InsertVehicleAsync(VehicleModel vehicleModel)
+        public Task InsertVehicleAsync(VehicleModel vehicleModel)
         {
-            await vehicleRepository.InsertVehicleAsync(vehicleModel);
+            return vehicleRepository.InsertVehicleAsync(vehicleModel);
         }
 
-        public async Task UpdateBaseAsync(IVehicleModel vehicleModel)
+        public Task UpdateBaseAsync(IVehicleModel vehicleModel)
         {
-            await vehicleRepository.UpdateVehicleAsync(vehicleModel);
+            return vehicleRepository.UpdateVehicleAsync(vehicleModel);
         }
 
         public Task  DeleteVehicleAsync(Guid id)

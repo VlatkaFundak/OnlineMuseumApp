@@ -50,20 +50,19 @@ namespace OnlineMuseum.Repository
         public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging, IVehicleFilter searchVehicle)
         {
             return await  vehicleContext.VehicleModels
-                .Where(item => Guid.Empty == searchVehicle.CategoryId ? item != null : item.VehicleCategoryId == searchVehicle.CategoryId)
+                .Where(item => searchVehicle.CategoryId.HasValue ? item.VehicleCategoryId == searchVehicle.CategoryId : item != null)
                 .OrderBy(item => item.Name)
                 .ToPagedListAsync(paging.PageNumber,paging.PageSize);
-
         }
 
-        public async Task InsertVehicleAsync(VehicleModel vehicleModel)
+        public Task InsertVehicleAsync(VehicleModel vehicleModel)
         {
             vehicleModel.Id = Guid.NewGuid();
             vehicleModel.Abrv = vehicleModel.Name.Substring(0, 3);
 
             vehicleContext.VehicleModels.Add(vehicleModel);
-            await vehicleContext.SaveChangesAsync();
 
+            return vehicleContext.SaveChangesAsync();
         }
 
         public Task UpdateVehicleAsync(IVehicleModel vehicle)
@@ -71,12 +70,12 @@ namespace OnlineMuseum.Repository
             return vehicleContext.SaveChangesAsync(); 
         }
 
-        public async Task DeleteVehicleAsync(Guid id)
+        public Task DeleteVehicleAsync(Guid id)
         {
-            VehicleModel oneVehicle = await vehicleContext.VehicleModels.FindAsync(id);
+            VehicleModel oneVehicle = vehicleContext.VehicleModels.Find(id);
             vehicleContext.VehicleModels.Remove(oneVehicle);
-            await vehicleContext.SaveChangesAsync();
 
+            return vehicleContext.SaveChangesAsync();
         }
 
         #endregion

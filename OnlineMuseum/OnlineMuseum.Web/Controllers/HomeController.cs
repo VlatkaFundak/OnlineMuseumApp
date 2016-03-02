@@ -95,8 +95,7 @@ namespace OnlineMuseum.Web.Controllers
             PagingParameters paging = new PagingParameters(pageNumber, pageSize);
             VehicleFilter filtering = new VehicleFilter(id, searchVehicle);
 
-            return View(await vehicleService.GetAllVehiclesAsync(paging, filtering));
-            
+            return View(await vehicleService.GetAllVehiclesAsync(paging, filtering));            
         }
 
     }
