@@ -65,7 +65,7 @@ namespace OnlineMuseum.Repository
             return vehicleContext.SaveChangesAsync();
         }
 
-        public Task UpdateVehicleAsync(IVehicleModel vehicle)
+        public Task UpdateVehicleAsync()
         {
             return vehicleContext.SaveChangesAsync(); 
         }

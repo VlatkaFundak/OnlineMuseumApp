@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
 using OnlineMuseum.Models.Common;
 
 namespace OnlineMuseum.Models
@@ -22,6 +24,7 @@ namespace OnlineMuseum.Models
         /// <summary>
         /// Gest or sets name.
         /// </summary>
+        [Required(ErrorMessage = "Enter name of the category")]
         public string Name { get; set; }
 
         /// <summary>
@@ -32,9 +35,8 @@ namespace OnlineMuseum.Models
         /// <summary>
         /// Gets or sets image url.
         /// </summary>
+        //[Required(ErrorMessage="Enter image url of the category.")]
         public string ImageUrl { get; set; }
-
-        public Guid VehicleMakerId { get; set; }
 
         #endregion
     }

@@ -1,0 +1,58 @@
+﻿@model OnlineMuseum.Models.VehicleModel
+@{
+    ViewBag.Title = "MoreDetails";
+}
+
+<h2>More details about the vehicle</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-6">
+            <h3>
+                @Model.Name 
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <td class="col-md-6">
+                        @Html.Label("Category of the vehicle")
+                    </td>
+                    <td>
+                        @Model.VehicleCategoryId
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.Label("Brand")
+                    </td>
+                    <td>
+                        @Model.VehicleMakerId
+                    </td>
+                </tr>
+            </table>
+            <div>
+                @Html.Label("Description")
+            </div>
+            <div>
+                @Model.Description
+            </div>
+        </div>
+ 
+        <div class="col-md-6 left">
+            <img src="@Model.ImageUrlOfThePast" style="max-width: 100%" />
+        </div>
+        <div class="col-md-6 right">
+            <img src="@Model.ImageUrlOfThePresent" style="max-width: 100%" />
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-primary" })
+
+@Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-primary" })
+
+@Html.ActionLink("Delete vehicle", "DeleteVehicle", null, new { @class = "btn btn-primary" })

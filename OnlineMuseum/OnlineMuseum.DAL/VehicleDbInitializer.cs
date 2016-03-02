@@ -63,13 +63,13 @@ namespace OnlineMuseum.DAL
             };
             context.VehicleCategories.Add(Auto);
 
-            var Past = new TimeCategory()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Past",
-                Abrv = "Pa"
-            };
-            context.TimeCategories.Add(Past);
+            //var Past = new TimeCategory()
+            //{
+            //    Id = Guid.NewGuid(),
+            //    Name = "Past",
+            //    Abrv = "Pa"
+            //};
+            //context.TimeCategories.Add(Past);
 
             var Car1 = new VehicleModel()
             {
@@ -85,7 +85,6 @@ namespace OnlineMuseum.DAL
                 ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
                 ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
             };
-
             context.VehicleModels.Add(Car1);
 
             base.Seed(context);

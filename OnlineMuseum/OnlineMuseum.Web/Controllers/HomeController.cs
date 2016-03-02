@@ -46,7 +46,7 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
-        public ActionResult Back()
+        public ActionResult BackToHomePage()
         {
             return RedirectToAction("Index");
         }
@@ -84,9 +84,20 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
-
         public ActionResult NewCategory()
         {
+            return View(new VehicleCategory());
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> NewCategory( VehicleCategory category)
+        {
+            if (ModelState.IsValid)
+            {
+                await categoryService.InsertCategoryAsync(category);
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
@@ -96,6 +107,18 @@ namespace OnlineMuseum.Web.Controllers
             VehicleFilter filtering = new VehicleFilter(id, searchVehicle);
 
             return View(await vehicleService.GetAllVehiclesAsync(paging, filtering));            
+        }
+
+        public async Task<ActionResult> MoreDetails(Guid id)
+        {
+            return View(await vehicleService.GetOneVehicleAsync(id));
+        }
+
+        public ActionResult DeleteVehicle(Guid id)
+        {
+            vehicleService.DeleteVehicleAsync(id);
+
+            return RedirectToAction("GetAllVehicles");
         }
 
     }

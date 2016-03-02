@@ -57,9 +57,9 @@ namespace OnlineMuseum.Services
             return vehicleRepository.InsertVehicleAsync(vehicleModel);
         }
 
-        public Task UpdateBaseAsync(IVehicleModel vehicleModel)
+        public Task UpdateBaseAsync()
         {
-            return vehicleRepository.UpdateVehicleAsync(vehicleModel);
+            return vehicleRepository.UpdateVehicleAsync();
         }
 
         public Task  DeleteVehicleAsync(Guid id)

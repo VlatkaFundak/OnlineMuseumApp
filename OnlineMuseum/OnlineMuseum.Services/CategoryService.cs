@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OnlineMuseum.Common;
+using OnlineMuseum.Models;
 using OnlineMuseum.Repository;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Services.Common;
@@ -34,6 +35,11 @@ namespace OnlineMuseum.Services
         public async Task<IVehicleCategory> GetOneCategoryAsync(Guid id)
         {
             return await categoryRepository.GetOneCategoryAsync(id);
+        }
+
+        public Task InsertCategoryAsync(VehicleCategory category)
+        {
+            return categoryRepository.InsertCategoryAsync(category);
         }
 
     }

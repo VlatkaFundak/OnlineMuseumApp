@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 using OnlineMuseum.DAL;
+using OnlineMuseum.Models;
 using OnlineMuseum.Common;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Repository.Common;
@@ -43,6 +44,16 @@ namespace OnlineMuseum.Repository
         public async Task<IVehicleCategory> GetOneCategoryAsync(Guid id)
         {
             return await vehicleContext.VehicleCategories.FindAsync(id);
+        }
+
+        public Task InsertCategoryAsync(VehicleCategory category)
+        {
+            category.Id = Guid.NewGuid();
+            category.Abrv = category.Name.Substring(0, 3);            
+
+            vehicleContext.VehicleCategories.Add(category);
+
+            return vehicleContext.SaveChangesAsync();
         }
     }
 }

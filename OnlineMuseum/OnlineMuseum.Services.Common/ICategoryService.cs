@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using OnlineMuseum.Common;
+using OnlineMuseum.Models;
 using OnlineMuseum.Models.Common;
 
 namespace OnlineMuseum.Services.Common
@@ -15,5 +16,7 @@ namespace OnlineMuseum.Services.Common
         Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync();
 
         Task<IVehicleCategory> GetOneCategoryAsync(Guid id);
+
+        Task InsertCategoryAsync(VehicleCategory category);
     }
 }

@@ -20,7 +20,7 @@ namespace OnlineMuseum.Repository.Common
 
         Task InsertVehicleAsync(VehicleModel vehicleModel);
 
-        Task UpdateVehicleAsync(IVehicleModel vehicleModel);
+        Task UpdateVehicleAsync();
 
         Task DeleteVehicleAsync(Guid id);
     }

@@ -22,6 +22,6 @@ namespace OnlineMuseum.DAL
 
         public virtual DbSet<VehicleCategory> VehicleCategories { get; set; }
 
-        public virtual DbSet<TimeCategory> TimeCategories { get; set; }
+        //public virtual DbSet<TimeCategory> TimeCategories { get; set; }
     }
 }
