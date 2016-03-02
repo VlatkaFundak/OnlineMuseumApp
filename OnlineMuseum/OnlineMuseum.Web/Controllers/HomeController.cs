@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 
+using OnlineMuseum.Common;
 using OnlineMuseum.Models;
 using OnlineMuseum.Services;
 using OnlineMuseum.Models.Common;
@@ -87,6 +88,15 @@ namespace OnlineMuseum.Web.Controllers
         public ActionResult NewCategory()
         {
             return View();
+        }
+
+        public async Task<ActionResult> GetAllVehicles( Guid id, string searchVehicle, int pageNumber = 1, int pageSize = 12)
+        {
+            PagingParameters paging = new PagingParameters(pageNumber, pageSize);
+            VehicleFilter filtering = new VehicleFilter(id, searchVehicle);
+
+            return View(await vehicleService.GetAllVehiclesAsync(paging, filtering));
+            
         }
 
     }

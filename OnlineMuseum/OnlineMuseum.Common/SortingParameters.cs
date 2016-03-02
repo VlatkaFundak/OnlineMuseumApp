@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineMuseum.Common
 {
-    public class Sorting
+    public class SortingParameters : ISortingParameters
     {
-        public Sorting(string sortOrder)
+        public SortingParameters(string sortOrder)
         {
             this.SortOrder = sortOrder;
         }

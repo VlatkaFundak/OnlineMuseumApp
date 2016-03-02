@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using System.Linq.Dynamic;
 using PagedList.EntityFramework;
 
 using OnlineMuseum.DAL;
@@ -48,12 +47,13 @@ namespace OnlineMuseum.Repository
             return await vehicleContext.VehicleModels.FindAsync(id);
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(Paging paging, Sorting sortOrder, Filtering searchVehicle)
+        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging, IVehicleFilter searchVehicle)
         {
-            return await vehicleContext.VehicleModels
-                .Where(item => String.IsNullOrEmpty(searchVehicle.SearchVehicle) ? item != null : item.Name.Contains(searchVehicle.SearchVehicle))
-                .OrderBy(sortOrder.SortOrder)
+            return await  vehicleContext.VehicleModels
+                .Where(item => Guid.Empty == searchVehicle.CategoryId ? item != null : item.VehicleCategoryId == searchVehicle.CategoryId)
+                .OrderBy(item => item.Name)
                 .ToPagedListAsync(paging.PageNumber,paging.PageSize);
+
         }
 
         public async Task InsertVehicleAsync(VehicleModel vehicleModel)
@@ -66,9 +66,9 @@ namespace OnlineMuseum.Repository
 
         }
 
-        public async Task UpdateVehicleAsync(IVehicleModel vehicle)
+        public Task UpdateVehicleAsync(IVehicleModel vehicle)
         {
-            await vehicleContext.SaveChangesAsync(); 
+            return vehicleContext.SaveChangesAsync(); 
         }
 
         public async Task DeleteVehicleAsync(Guid id)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 
 using OnlineMuseum.DAL;
+using OnlineMuseum.Common;
 using OnlineMuseum.Models.Common;
 using OnlineMuseum.Repository.Common;
 

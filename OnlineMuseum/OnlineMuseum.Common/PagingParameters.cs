@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OnlineMuseum.Common
 {
-    public class Paging
+    public class PagingParameters : IPagingParameters
     {
-        public Paging(int pageNumber, int pageSize)
+        public PagingParameters(int pageNumber, int pageSize)
         {
             this.PageNumber = pageNumber;
             this.PageSize = pageSize;

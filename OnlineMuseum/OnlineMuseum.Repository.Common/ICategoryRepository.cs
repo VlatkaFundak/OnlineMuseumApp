@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using OnlineMuseum.Common;
 using OnlineMuseum.Models.Common;
 
 namespace OnlineMuseum.Repository.Common

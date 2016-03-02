@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 using OnlineMuseum.Models;
 using OnlineMuseum.Common;
@@ -24,7 +25,7 @@ namespace OnlineMuseum.Services
         /// Vehicle repository.
         /// </summary>
         private IVehicleRepository vehicleRepository;
-        //private ITimeRepository timeRepository;
+        private ICategoryRepository categoryRepository;
 
         #endregion
 
@@ -36,7 +37,7 @@ namespace OnlineMuseum.Services
         public VehicleService()
         {
             vehicleRepository = new VehicleRepository();
-            //timeRepository = new TimeRepository();
+            categoryRepository = new CategoryRepository();
         }
 
         #endregion
@@ -46,9 +47,9 @@ namespace OnlineMuseum.Services
             return await vehicleRepository.GetOneVehicleAsync(id);
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(Paging paging, Sorting sortOrder, Filtering searchVehicle)
+        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging,  IVehicleFilter searchVehicle)
         {
-            return await vehicleRepository.GetAllVehiclesAsync(paging, sortOrder, searchVehicle);
+            return await vehicleRepository.GetAllVehiclesAsync(paging, searchVehicle);
         }
 
         public async Task InsertVehicleAsync(VehicleModel vehicleModel)
@@ -61,9 +62,9 @@ namespace OnlineMuseum.Services
             await vehicleRepository.UpdateVehicleAsync(vehicleModel);
         }
 
-        public async Task  DeleteVehicleAsync(Guid id)
+        public Task  DeleteVehicleAsync(Guid id)
         {
-            await vehicleRepository.DeleteVehicleAsync(id);
+            return vehicleRepository.DeleteVehicleAsync(id);
         }
 
     }
