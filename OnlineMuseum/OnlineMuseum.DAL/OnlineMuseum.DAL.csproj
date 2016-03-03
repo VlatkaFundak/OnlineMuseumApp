@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\VehicleCategory.cs" />
+    <Compile Include="Entities\VehicleMaker.cs" />
+    <Compile Include="Entities\VehicleModel.cs" />
+    <Compile Include="Mapping\VehicleCategoryMap.cs" />
+    <Compile Include="Mapping\VehicleMakerMap.cs" />
+    <Compile Include="Mapping\VehicleModelMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleContext.cs" />
     <Compile Include="VehicleDbInitializer.cs" />

@@ -37,7 +37,7 @@ namespace OnlineMuseum.Services
             return await categoryRepository.GetOneCategoryAsync(id);
         }
 
-        public Task InsertCategoryAsync(VehicleCategory category)
+        public Task InsertCategoryAsync(VehicleCategoryPoco category)
         {
             return categoryRepository.InsertCategoryAsync(category);
         }

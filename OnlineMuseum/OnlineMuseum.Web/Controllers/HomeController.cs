@@ -66,11 +66,11 @@ namespace OnlineMuseum.Web.Controllers
             ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
             ViewBag.MakerCategories = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
 
-            return View(new VehicleModel());
+            return View(new VehicleModelPoco());
         }
 
         [HttpPost]
-        public async Task<ActionResult> NewVehicle(VehicleModel vehicle)
+        public async Task<ActionResult> NewVehicle(VehicleModelPoco vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -86,11 +86,11 @@ namespace OnlineMuseum.Web.Controllers
 
         public ActionResult NewCategory()
         {
-            return View(new VehicleCategory());
+            return View(new VehicleCategoryPoco());
         }
         
         [HttpPost]
-        public async Task<ActionResult> NewCategory( VehicleCategory category)
+        public async Task<ActionResult> NewCategory( VehicleCategoryPoco category)
         {
             if (ModelState.IsValid)
             {

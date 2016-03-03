@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -44,10 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeCategory.cs" />
-    <Compile Include="VehicleCategory.cs" />
-    <Compile Include="VehicleMaker.cs" />
-    <Compile Include="VehicleModel.cs" />
+    <Compile Include="TimeCategoryPoco.cs" />
+    <Compile Include="VehicleCategoryPoco.cs" />
+    <Compile Include="VehicleMakerPoco.cs" />
+    <Compile Include="VehicleModelPoco.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineMuseum.Models.Common\OnlineMuseum.Models.Common.csproj">
@@ -57,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

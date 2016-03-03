@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using AutoMapper;
 
 using OnlineMuseum.DAL;
+using OnlineMuseum.Models;
 using OnlineMuseum.Models.Common;
+using OnlineMuseum.Repository.Mapping;
 using OnlineMuseum.Repository.Common;
 
 namespace OnlineMuseum.Repository
@@ -19,6 +22,7 @@ namespace OnlineMuseum.Repository
         /// Vehicle context field.
         /// </summary>
         private VehicleContext vehicleContext;
+        private IMapper mapper;
 
         #endregion
 
@@ -29,19 +33,21 @@ namespace OnlineMuseum.Repository
         /// </summary>
         public MakerRepository()
         {
-            vehicleContext = new VehicleContext();        
+            vehicleContext = new VehicleContext();
+            AutoMapperMaps.ConfigureMapping();
+            mapper = AutoMapperMaps.GetMapper();
         }
 
         #endregion
 
         public async Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync()
         {
-            return await vehicleContext.VehicleMakers.ToListAsync();
+            return mapper.Map<IEnumerable<VehicleMakerPoco>>(await vehicleContext.VehicleMakers.ToListAsync());
         }
 
         public async Task<IVehicleMaker> GetOneMakerAsync(Guid id)
         {
-            return await vehicleContext.VehicleMakers.FindAsync(id);
+            return mapper.Map<VehicleMakerPoco>(await vehicleContext.VehicleMakers.FindAsync(id));
         }
     }
 }

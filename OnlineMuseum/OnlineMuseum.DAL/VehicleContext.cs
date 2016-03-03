@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using OnlineMuseum.Models;
+using OnlineMuseum.DAL.Entities;
+using OnlineMuseum.DAL.Mapping;
 
 namespace OnlineMuseum.DAL
 {
@@ -22,6 +24,15 @@ namespace OnlineMuseum.DAL
 
         public virtual DbSet<VehicleCategory> VehicleCategories { get; set; }
 
-        //public virtual DbSet<TimeCategory> TimeCategories { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new VehicleCategoryMap());
+            modelBuilder.Configurations.Add(new VehicleMakerMap());
+            modelBuilder.Configurations.Add(new VehicleModelMap());
+            
+            base.OnModelCreating(modelBuilder);
+        }
+
+
     }
 }

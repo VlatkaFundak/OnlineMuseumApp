@@ -1,4 +1,4 @@
-﻿@model OnlineMuseum.Models.VehicleModel
+﻿@model OnlineMuseum.Models.VehicleModelPoco
 @{
     ViewBag.Title = "MoreDetails";
 }
@@ -22,7 +22,7 @@
                         @Html.Label("Category of the vehicle")
                     </td>
                     <td>
-                        @Model.VehicleCategoryId
+                        @Model.VehicleCategory.Name
                     </td>
                 </tr>
                 <tr>
@@ -30,7 +30,7 @@
                         @Html.Label("Brand")
                     </td>
                     <td>
-                        @Model.VehicleMakerId
+                        @Model.VehicleMaker.Name
                     </td>
                 </tr>
             </table>
@@ -50,6 +50,7 @@
         </div>
     </div>
 }
+<br />
 
 @Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-primary" })
 

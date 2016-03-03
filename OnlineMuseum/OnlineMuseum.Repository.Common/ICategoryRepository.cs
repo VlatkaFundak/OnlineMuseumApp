@@ -16,6 +16,6 @@ namespace OnlineMuseum.Repository.Common
 
         Task<IVehicleCategory> GetOneCategoryAsync(Guid id);
 
-        Task InsertCategoryAsync(VehicleCategory category);
+        Task InsertCategoryAsync(IVehicleCategory category);
     }
 }

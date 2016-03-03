@@ -8,9 +8,9 @@ using OnlineMuseum.Models.Common;
 namespace OnlineMuseum.Models
 {
     /// <summary>
-    /// Vehicle maker class.
+    /// Time category class.
     /// </summary>
-    public class VehicleMaker: IVehicleMaker
+    public class TimeCategoryPoco: ITimeCategory
     {
         #region Properties
 

@@ -3,19 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-using OnlineMuseum.Models.Common;
-
-namespace OnlineMuseum.Models
+namespace OnlineMuseum.DAL.Entities
 {
-    /// <summary>
-    /// Vehicle category class.
-    /// </summary>
-    public class VehicleCategory : IVehicleCategory
+    public class VehicleCategory
     {
-        #region Properties
-
         /// <summary>
         /// Gest or sets Id.
         /// </summary>
@@ -24,7 +16,6 @@ namespace OnlineMuseum.Models
         /// <summary>
         /// Gest or sets name.
         /// </summary>
-        [Required(ErrorMessage = "Enter name of the category")]
         public string Name { get; set; }
 
         /// <summary>
@@ -38,6 +29,6 @@ namespace OnlineMuseum.Models
         //[Required(ErrorMessage="Enter image url of the category.")]
         public string ImageUrl { get; set; }
 
-        #endregion
+        public ICollection<VehicleModel> VehicleModels { get; set; }
     }
 }
