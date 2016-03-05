@@ -2,21 +2,24 @@
 
 @{
     ViewBag.Title = "Index";
-}
+}   
 
-<h2 class="heading">Welcome to the first online museum</h2>
-
-<div class="test">
-    <div class="category">
-        @Html.ActionLink("Click to enter", "MuseumCategories", null, new { @class = "btn btn-primary" })
+<div class="container">
+    <div class="row">
+        <h2 class="col-md-12 text-center">Welcome to the first online museum</h2>
     </div>
-    <div class="down">
-        <div class="leftButtons">
-            @Html.ActionLink("New vehicle", "NewVehicle", null, new { @class = "btn btn-primary" })
+    <hr />
+    <div class="row">
+        <div class="col-md-12 text-center">
+            @Html.ActionLink("Click to enter", "MuseumCategories", null, new { @class = "btn btn-success btn-lg" })
         </div>
-
-        <div class="rightButton">
-            @Html.ActionLink("New category", "NewCategory", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 text-left">
+            @Html.ActionLink("New vehicle", "NewVehicle", null, new { @class = "btn btn-default" })
+        </div>
+        <div class="col-xs-12 col-sm-6 text-right">
+            @Html.ActionLink("New category", "NewCategory", null, new { @class = "btn btn-default" })
         </div>
     </div>
 </div>

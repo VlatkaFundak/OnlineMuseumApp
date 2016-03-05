@@ -3,6 +3,6 @@ namespace OnlineMuseum.Common
 {
     public interface ISortingParameters
     {
-        string SortOrder { get; set; }
+        string VehicleMaker { get; set; }
     }
 }

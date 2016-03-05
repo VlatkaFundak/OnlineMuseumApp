@@ -5,18 +5,20 @@
 
 <h2>MuseumCategories</h2>
 
-<table>
+<table class="table table-hover">
 
     @foreach (var item in Model)
-        {
+    {
         <tr>
             <td onclick="location.href ='@Url.Action("GetAllVehicles", "Home", new { id = item.Id })'">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
         </tr>
-        }
+    }
 </table>
 
-@Html.ActionLink("Back to home page", "BackToHomePage")
+
+
+@Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-default" })
 
 

@@ -5,30 +5,38 @@
 
 <h2>List of Vehicles</h2>
 
-<table>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <th>
-                @Html.DisplayFor(itemModel => item.VehicleMaker.Name)
-            </th>
-        </tr>
-        <tr>
-            <th onclick="location.href ='@Url.Action("MoreDetails","Home", new {id = item.Id})'">
-                @Html.DisplayFor(itemModel => item.Name)
-            </th>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayFor(itemModel => item.FunFacts)
-            </td>
+@using (Html.BeginForm("GetAllVehicles", "Home", FormMethod.Get, new {id = "filterform"}))
+{
+    <div class="col-md-6">
+        @Html.TextBox("findVehicle", null, new { placeholder = "Search vehicle by model" })
+        <input type="submit" value="Search" class="btn btn-sm btn-success" />
+    </div>
+    
+    <div>
+        @Html.DropDownList("makerId", (SelectList)ViewBag.Makers, "Show makers", new { @class = "btn btn-default dropdown-toggle" , onchange = "this.form.submit()" })
+    </div>
+    <dl class="dl-horizontal">
 
-        </tr>
-    }
-</table>
+        @foreach (var item in Model)     {
+
+            <dt>
+                @Html.DisplayFor(itemModel => item.VehicleMaker.Name)
+            </dt>
+
+            <dt onclick="location.href ='@Url.Action("MoreDetails","Home", new {id = item.Id, categoryId = item.VehicleCategoryId})'">
+                @Html.DisplayFor(itemModel => item.Name)
+            </dt>
+            <dd></dd>
+            <dd>
+                @Html.DisplayFor(itemModel => item.FunFacts)
+            </dd>
+        }
+
+    </dl>
+}
 
 
 @Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-primary" })
 
-@Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-warning" })
+@Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-default" })
 

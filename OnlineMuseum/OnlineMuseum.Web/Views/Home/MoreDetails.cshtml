@@ -41,19 +41,21 @@
                 @Model.Description
             </div>
         </div>
- 
-        <div class="col-md-6 left">
-            <img src="@Model.ImageUrlOfThePast" style="max-width: 100%" />
-        </div>
-        <div class="col-md-6 right">
-            <img src="@Model.ImageUrlOfThePresent" style="max-width: 100%" />
-        </div>
     </div>
+
+ <div class="row">
+     <div class="col-xs-12 col-sm-6 text-left">
+         <img src="@Model.ImageUrlOfThePast" style="max-width: 100%" />
+     </div>
+     <div class="col-xs-12 col-sm-6 text-left">
+         <img src="@Model.ImageUrlOfThePresent" style="max-width: 100%" />
+     </div>
+ </div>
 }
 <br />
 
-@Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-default" })
 
 @Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-primary" })
 
-@Html.ActionLink("Delete vehicle", "DeleteVehicle", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Delete vehicle", "DeleteVehicle", new { id = Model.Id }, new { @class = "btn btn-primary" })

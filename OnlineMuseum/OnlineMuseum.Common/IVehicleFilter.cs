@@ -5,7 +5,9 @@ namespace OnlineMuseum.Common
     {
         Guid? CategoryId { get; set; }
 
-        string Name { get; set; }
+        string FindVehicle { get; set; }
+
+        Guid? MakerId { get; set; }
 
     }
 }

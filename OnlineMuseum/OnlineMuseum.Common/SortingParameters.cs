@@ -8,11 +8,15 @@ namespace OnlineMuseum.Common
 {
     public class SortingParameters : ISortingParameters
     {
-        public SortingParameters(string sortOrder)
+        #region Constructor
+
+        public SortingParameters(string vehicleMaker)
         {
-            this.SortOrder = sortOrder;
+            this.VehicleMaker = vehicleMaker;
         }
 
-        public string SortOrder { get; set; }
+        #endregion
+
+        public string VehicleMaker { get; set; }
     }
 }

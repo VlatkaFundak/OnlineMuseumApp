@@ -101,12 +101,14 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetAllVehicles( Guid id, string searchVehicle, int pageNumber = 1, int pageSize = 12)
-        {
+        public async Task<ActionResult> GetAllVehicles( Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 12)
+        {            
             PagingParameters paging = new PagingParameters(pageNumber, pageSize);
-            VehicleFilter filtering = new VehicleFilter(id, searchVehicle);
+            VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
 
-            return View(await vehicleService.GetAllVehiclesAsync(paging, filtering));            
+            ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+
+            return View(await vehicleService.GetVehiclesAsync(paging, filtering));            
         }
 
         public async Task<ActionResult> MoreDetails(Guid id)
@@ -114,7 +116,7 @@ namespace OnlineMuseum.Web.Controllers
             return View(await vehicleService.GetOneVehicleAsync(id));
         }
 
-        public ActionResult DeleteVehicle(Guid id)
+        public ActionResult DeleteVehicle(Guid id, Guid categoryId)
         {
             vehicleService.DeleteVehicleAsync(id);
 

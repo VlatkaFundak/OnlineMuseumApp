@@ -52,10 +52,12 @@ namespace OnlineMuseum.Repository
             return mapper.Map<VehicleModelPoco>(await vehicleContext.VehicleModels.FindAsync(id));
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging, IVehicleFilter searchVehicle)
+        public async Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle)
         {
             return mapper.Map<List<VehicleModelPoco>>(await vehicleContext.VehicleModels
-                .Where(item => searchVehicle.CategoryId.HasValue ? item.VehicleCategoryId == searchVehicle.CategoryId : item != null)
+                .Where(item => filterVehicle.CategoryId.HasValue ? item.VehicleCategoryId == filterVehicle.CategoryId : item != null)
+                .Where(item => String.IsNullOrEmpty(filterVehicle.FindVehicle) ? item != null : item.Name.Contains(filterVehicle.FindVehicle))
+                .Where(item => filterVehicle.MakerId == Guid.Empty ? item != null : item.VehicleMakerId == filterVehicle.MakerId)
                 .OrderBy(item => item.Name)
                 .ToPagedListAsync(paging.PageNumber,paging.PageSize));
         }
@@ -64,7 +66,6 @@ namespace OnlineMuseum.Repository
         {
             vehicleModel.Id = Guid.NewGuid();
             vehicleModel.Abrv = vehicleModel.Name.Substring(0, 3);
-
             vehicleContext.VehicleModels.Add(mapper.Map<DAL.Entities.VehicleModel>(vehicleModel));
 
             return vehicleContext.SaveChangesAsync();

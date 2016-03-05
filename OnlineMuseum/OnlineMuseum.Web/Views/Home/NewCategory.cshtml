@@ -16,15 +16,10 @@
             </div>
             <div class="form-group">
                 @Html.TextBoxFor(item => item.ImageUrl, new { placeholder = "Image url", @Value = "", @class = "form-control" })
-            </div>
-           
-            <div class="btn-group">
-                <div class="btn-group">
-                    <input type="submit" value="Save" class="btn btn-success btn-lg " />
-                </div>
-                <div class="btn-group">
-                    @Html.ActionLink("Back", "BackToHomePage", null, new { @class = "btn btn-warning btn-lg" })
-                </div>
+            </div>           
+            <div class="row">
+                    <input type="submit" value="Save" class=" btn btn-success btn-lg btn-block" />
+                    @Html.ActionLink("Back", "BackToHomePage", null, new { @class = "btn btn-default btn-lg btn-block" })
             </div>
         </div>
     </div>

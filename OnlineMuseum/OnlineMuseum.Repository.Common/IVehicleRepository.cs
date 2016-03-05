@@ -15,7 +15,7 @@ namespace OnlineMuseum.Repository.Common
     {
         Task<IVehicleModel> GetOneVehicleAsync(Guid id);
 
-        Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging, IVehicleFilter searchVehicle);
+        Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle);
 
         Task InsertVehicleAsync(IVehicleModel vehicleModel);
 

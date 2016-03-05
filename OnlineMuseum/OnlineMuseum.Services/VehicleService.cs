@@ -47,9 +47,9 @@ namespace OnlineMuseum.Services
             return await vehicleRepository.GetOneVehicleAsync(id);
         }
 
-        public async Task<IEnumerable<IVehicleModel>> GetAllVehiclesAsync(IPagingParameters paging,  IVehicleFilter searchVehicle)
+        public async Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle)
         {
-            return await vehicleRepository.GetAllVehiclesAsync(paging, searchVehicle);
+            return await vehicleRepository.GetVehiclesAsync(paging, filterVehicle);
         }
 
         public Task InsertVehicleAsync(VehicleModelPoco vehicleModel)

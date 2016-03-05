@@ -46,23 +46,23 @@ namespace OnlineMuseum.DAL
             context.VehicleMakers.Add(Aurora);
 
 
-            var Train = new VehicleCategory()
+            var Trains = new VehicleCategory()
             {
                 Id = Guid.NewGuid(),
-                Name = "Train",
+                Name = "Trains",
                 Abrv = "Tr",
                 ImageUrl = ""
             };
-            context.VehicleCategories.Add(Train);
+            context.VehicleCategories.Add(Trains);
 
-            var Auto = new VehicleCategory()
+            var Cars = new VehicleCategory()
             {
                 Id = Guid.NewGuid(),
-                Name = "Car",
-                Abrv = "Cr",
+                Name = "Cars",
+                Abrv = "Ca",
                 ImageUrl = ""
             };
-            context.VehicleCategories.Add(Auto);
+            context.VehicleCategories.Add(Cars);
 
             //var Past = new TimeCategory()
             //{
@@ -75,13 +75,13 @@ namespace OnlineMuseum.DAL
             var Car1 = new VehicleModel()
             {
                 Id = Guid.NewGuid(),
-                Name = "Punto called Mecava",
-                Abrv = "Maco",
+                Name = "Punto",
+                Abrv = "Maco  called Mecava",
                 YearOfProduction = 2016,
                 Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet lobortis sapie",
                 FunFacts = "A car called Mecava has been through enough trouble, distance, hills but the fastination stays in the fact that it still starts people!",
                 //TimeCategoryId = Past.Id,
-                VehicleCategoryId = Auto.Id,
+                VehicleCategoryId = Cars.Id,
                 VehicleMakerId = Opel.Id,
                 ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
                 ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
