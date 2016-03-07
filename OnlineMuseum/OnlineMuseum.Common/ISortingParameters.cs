@@ -1,8 +1,14 @@
 ﻿using System;
 namespace OnlineMuseum.Common
 {
+    /// <summary>
+    /// Sorting parameters interface.
+    /// </summary>
     public interface ISortingParameters
     {
-        string VehicleMaker { get; set; }
+        /// <summary>
+        /// Gets or sets vehicle category.
+        /// </summary>
+        string VehicleCategory { get; set; }
     }
 }

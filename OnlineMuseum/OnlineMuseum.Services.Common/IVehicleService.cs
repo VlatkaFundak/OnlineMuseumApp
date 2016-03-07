@@ -10,16 +10,39 @@ using OnlineMuseum.Models.Common;
 
 namespace OnlineMuseum.Services.Common
 {
+    /// <summary>
+    /// Vehicle service interface.
+    /// </summary>
     public interface IVehicleService
     {
+        /// <summary>
+        /// Gets one vehicle.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>One vehicle.</returns>
         Task<IVehicleModel> GetOneVehicleAsync(Guid id);
 
-        Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle);
+        Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle, ISortingParameters sorting);
 
+        /// <summary>
+        /// Inserts new vehicle.
+        /// </summary>
+        /// <param name="vehicleModel">Vehicle model.</param>
+        /// <returns>Updated database.</returns>
         Task InsertVehicleAsync(VehicleModelPoco vehicleModel);
 
+        /// <summary>
+        /// Update database.
+        /// </summary>
+        /// <param name="vehicleModel">Vehicle model.</param>
+        /// <returns>Updated database.</returns>
         Task UpdateBaseAsync(IVehicleModel vehicleModel);
 
+        /// <summary>
+        /// Deletes vehicle.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>Updated database.</returns>
         Task DeleteVehicleAsync(Guid id);
     }
 }

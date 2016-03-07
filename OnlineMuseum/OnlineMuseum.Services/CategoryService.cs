@@ -13,30 +13,56 @@ using OnlineMuseum.Repository.Common;
 
 namespace OnlineMuseum.Services
 {
+    /// <summary>
+    /// Category service class.
+    /// </summary>
     public class CategoryService: ICategoryService
     {
         #region Fields
 
+        /// <summary>
+        /// Category repository.
+        /// </summary>
         private ICategoryRepository categoryRepository;
 
         #endregion
 
+        #region Constructor
+
+        /// <summary>
+        /// Category service constructor.
+        /// </summary>
         public CategoryService()
         {
             categoryRepository = new CategoryRepository();
         }
 
+        #endregion
 
+        /// <summary>
+        /// Gets all categories.
+        /// </summary>
+        /// <returns>Categories.</returns>
         public async Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync()
         {
             return await categoryRepository.GetAllCategoriesAsync();
         }
 
+        /// <summary>
+        /// Gets one categore.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>One category.</returns>
         public async Task<IVehicleCategory> GetOneCategoryAsync(Guid id)
         {
             return await categoryRepository.GetOneCategoryAsync(id);
         }
 
+        /// <summary>
+        /// Inserts new category.
+        /// </summary>
+        /// <param name="category">Category.</param>
+        /// <returns>Updated database.</returns>
         public Task InsertCategoryAsync(VehicleCategoryPoco category)
         {
             return categoryRepository.InsertCategoryAsync(category);

@@ -15,6 +15,9 @@ using OnlineMuseum.Repository.Common;
 
 namespace OnlineMuseum.Repository
 {
+    /// <summary>
+    /// Category repository class.
+    /// </summary>
     public class CategoryRepository: ICategoryRepository
     {
         #region Fields
@@ -23,6 +26,10 @@ namespace OnlineMuseum.Repository
         /// Vehicle context field.
         /// </summary>
         private VehicleContext vehicleContext;
+
+        /// <summary>
+        /// Mapper.
+        /// </summary>
         private IMapper mapper;
 
         #endregion
@@ -41,16 +48,32 @@ namespace OnlineMuseum.Repository
 
         #endregion
 
+        #region Public methods
+
+        /// <summary>
+        /// Gets all categories.
+        /// </summary>
+        /// <returns>Categories.</returns>
         public async Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync()
         {
             return mapper.Map<IEnumerable<VehicleCategoryPoco>>(await vehicleContext.VehicleCategories.ToListAsync());
         }
 
+        /// <summary>
+        /// Gets one category.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>Category.</returns>
         public async Task<IVehicleCategory> GetOneCategoryAsync(Guid id)
         {
             return mapper.Map<VehicleCategoryPoco>( await vehicleContext.VehicleCategories.FindAsync(id));
         }
 
+        /// <summary>
+        /// Inserts new category.
+        /// </summary>
+        /// <param name="category">Category.</param>
+        /// <returns>Updated database.</returns>
         public Task InsertCategoryAsync(IVehicleCategory category)
         {
             category.Id = Guid.NewGuid();
@@ -60,5 +83,7 @@ namespace OnlineMuseum.Repository
 
             return vehicleContext.SaveChangesAsync();
         }
+
+        #endregion
     }
 }

@@ -14,6 +14,9 @@ using OnlineMuseum.Repository.Common;
 
 namespace OnlineMuseum.Repository
 {
+    /// <summary>
+    /// Maker repository class.
+    /// </summary>
     public class MakerRepository: IMakerRepository
     {
         #region Fields
@@ -22,6 +25,10 @@ namespace OnlineMuseum.Repository
         /// Vehicle context field.
         /// </summary>
         private VehicleContext vehicleContext;
+
+        /// <summary>
+        /// Mapper.
+        /// </summary>
         private IMapper mapper;
 
         #endregion
@@ -40,11 +47,20 @@ namespace OnlineMuseum.Repository
 
         #endregion
 
+        /// <summary>
+        /// Gets all makers.
+        /// </summary>
+        /// <returns>Makers.</returns>
         public async Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync()
         {
             return mapper.Map<IEnumerable<VehicleMakerPoco>>(await vehicleContext.VehicleMakers.ToListAsync());
         }
 
+        /// <summary>
+        /// Gets one maker.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>Maker.</returns>
         public async Task<IVehicleMaker> GetOneMakerAsync(Guid id)
         {
             return mapper.Map<VehicleMakerPoco>(await vehicleContext.VehicleMakers.FindAsync(id));

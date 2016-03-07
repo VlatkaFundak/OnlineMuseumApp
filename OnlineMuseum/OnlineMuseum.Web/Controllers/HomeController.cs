@@ -57,7 +57,6 @@ namespace OnlineMuseum.Web.Controllers
             return RedirectToAction("MuseumCategories");
         }
 
-
         public async Task<ActionResult> MuseumCategories()
         {
             return View(await categoryService.GetAllCategoriesAsync());
@@ -70,6 +69,7 @@ namespace OnlineMuseum.Web.Controllers
 
             return View(new VehicleModelPoco());
         }
+
 
         [HttpPost]
         public async Task<ActionResult> NewVehicle(VehicleModelPoco vehicle)
@@ -86,11 +86,20 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// New category.
+        /// </summary>
+        /// <returns>Vehicle category.</returns>
         public ActionResult NewCategory()
         {
             return View(new VehicleCategoryPoco());
         }
         
+        /// <summary>
+        /// New category.
+        /// </summary>
+        /// <param name="category">Category.</param>
+        /// <returns>Index page.</returns>
         [HttpPost]
         public async Task<ActionResult> NewCategory( VehicleCategoryPoco category)
         {
@@ -103,17 +112,23 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetVehicles( Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 3)
+        public async Task<ActionResult> GetVehicles(Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 12, string sortOrderByCategory = "VehicleCategory.Name")
         {            
             PagingParameters paging = new PagingParameters(pageNumber, pageSize);
             VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
+            SortingParameters sortingFilter = new SortingParameters(sortOrderByCategory);
 
+            ViewBag.SortCategory = sortOrderByCategory == "VehicleCategory.Name" ? "VehicleCategory.Name desc" : "VehicleCategory.Name";
             ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
 
-
-            return View(await vehicleService.GetVehiclesAsync(paging, filtering));            
+            return View(await vehicleService.GetVehiclesAsync(paging, filtering, sortingFilter));            
         }
 
+        /// <summary>
+        /// More details about the vehicle.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>One vehicle.</returns>
         public async Task<ActionResult> MoreDetails(Guid id)
         {
             return View(await vehicleService.GetOneVehicleAsync(id));
@@ -125,6 +140,5 @@ namespace OnlineMuseum.Web.Controllers
 
             return RedirectToAction("MuseumCategories");
         }
-
     }
 }

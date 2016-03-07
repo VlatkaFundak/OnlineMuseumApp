@@ -6,6 +6,12 @@
 <h2>MuseumCategories</h2>
 
 <table class="table table-hover">
+    <tr>
+        <th>
+            @Html.ActionLink("Category", "GetVehicles", new { sortOrderByCategory = ViewBag.SortCategory })
+        </th>
+
+    </tr>
 
     @foreach (var item in Model)
     {

@@ -6,17 +6,27 @@ using System.Threading.Tasks;
 
 namespace OnlineMuseum.Common
 {
+    /// <summary>
+    /// Sorting parameters class.
+    /// </summary>
     public class SortingParameters : ISortingParameters
     {
         #region Constructor
 
-        public SortingParameters(string vehicleMaker)
+        /// <summary>
+        /// Sorting parameters constructor.
+        /// </summary>
+        /// <param name="vehicleCategory">Vehicle category.</param>
+        public SortingParameters(string vehicleCategory)
         {
-            this.VehicleMaker = vehicleMaker;
+            this.VehicleCategory = vehicleCategory;
         }
 
         #endregion
 
-        public string VehicleMaker { get; set; }
+        /// <summary>
+        /// Gets or sets vehicle category.
+        /// </summary>
+        public string VehicleCategory { get; set; }
     }
 }

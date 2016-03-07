@@ -10,7 +10,7 @@
 @using (Html.BeginForm("GetVehicles", "Home", FormMethod.Get, new {id = "filterform"}))
 {
     <div class="col-md-6">
-        @Html.TextBox("findVehicle", null, new { placeholder = "Search vehicle by model" })
+        @Html.TextBox("findVehicle", null, new { placeholder = "Search vehicle by makers" })
         <input type="submit" value="Search" class="btn btn-sm btn-success" />
     </div>
     
@@ -19,7 +19,8 @@
     </div>
     <dl class="dl-horizontal">
 
-        @foreach (var item in Model)     {
+        @foreach (var item in Model)
+        {
             <dt>
                 @Html.DisplayFor(itemModel => item.VehicleMaker.Name)
             </dt>
