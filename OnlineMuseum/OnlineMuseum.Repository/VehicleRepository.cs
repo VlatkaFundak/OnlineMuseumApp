@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using PagedList.EntityFramework;
+using PagedList;
 using AutoMapper;
 
 using OnlineMuseum.DAL;
@@ -54,12 +55,17 @@ namespace OnlineMuseum.Repository
 
         public async Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle)
         {
-            return mapper.Map<List<VehicleModelPoco>>(await vehicleContext.VehicleModels
+            var listOfVehicles = mapper.Map<List<VehicleModelPoco>>(await vehicleContext.VehicleModels
                 .Where(item => filterVehicle.CategoryId.HasValue ? item.VehicleCategoryId == filterVehicle.CategoryId : item != null)
                 .Where(item => String.IsNullOrEmpty(filterVehicle.FindVehicle) ? item != null : item.Name.Contains(filterVehicle.FindVehicle))
                 .Where(item => filterVehicle.MakerId == Guid.Empty ? item != null : item.VehicleMakerId == filterVehicle.MakerId)
                 .OrderBy(item => item.Name)
-                .ToPagedListAsync(paging.PageNumber,paging.PageSize));
+                .ToListAsync());
+
+            var pagedList = listOfVehicles.ToPagedList(paging.PageNumber, paging.PageSize);
+            var pagedListOfVehicles = new StaticPagedList<VehicleModelPoco>(pagedList, pagedList.GetMetaData());
+
+            return pagedListOfVehicles;
         }
 
         public Task InsertVehicleAsync(IVehicleModel vehicleModel)

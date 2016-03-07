@@ -10,7 +10,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td onclick="location.href ='@Url.Action("GetAllVehicles", "Home", new { id = item.Id })'">
+            <td onclick="location.href ='@Url.Action("GetVehicles", "Home", new { id = item.Id })'">
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
         </tr>

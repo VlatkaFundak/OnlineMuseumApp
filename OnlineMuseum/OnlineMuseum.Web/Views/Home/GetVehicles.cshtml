@@ -1,11 +1,13 @@
-﻿@model IEnumerable<OnlineMuseum.Models.VehicleModelPoco>
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<OnlineMuseum.Models.VehicleModelPoco>
 @{
-    ViewBag.Title = "Gets all vehicles";
+    ViewBag.Title = "Gets vehicles";
 }
 
 <h2>List of Vehicles</h2>
 
-@using (Html.BeginForm("GetAllVehicles", "Home", FormMethod.Get, new {id = "filterform"}))
+@using (Html.BeginForm("GetVehicles", "Home", FormMethod.Get, new {id = "filterform"}))
 {
     <div class="col-md-6">
         @Html.TextBox("findVehicle", null, new { placeholder = "Search vehicle by model" })
@@ -18,7 +20,6 @@
     <dl class="dl-horizontal">
 
         @foreach (var item in Model)     {
-
             <dt>
                 @Html.DisplayFor(itemModel => item.VehicleMaker.Name)
             </dt>
@@ -39,4 +40,7 @@
 @Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-primary" })
 
 @Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-default" })
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("GetVehicles", new { pageNumber }))
+
 

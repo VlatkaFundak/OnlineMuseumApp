@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using PagedList.Mvc;
 
 using OnlineMuseum.Common;
 using OnlineMuseum.Models;
@@ -56,6 +57,7 @@ namespace OnlineMuseum.Web.Controllers
             return RedirectToAction("MuseumCategories");
         }
 
+
         public async Task<ActionResult> MuseumCategories()
         {
             return View(await categoryService.GetAllCategoriesAsync());
@@ -101,12 +103,13 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
-        public async Task<ActionResult> GetAllVehicles( Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 12)
+        public async Task<ActionResult> GetVehicles( Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 3)
         {            
             PagingParameters paging = new PagingParameters(pageNumber, pageSize);
             VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
 
             ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+
 
             return View(await vehicleService.GetVehiclesAsync(paging, filtering));            
         }
@@ -116,11 +119,11 @@ namespace OnlineMuseum.Web.Controllers
             return View(await vehicleService.GetOneVehicleAsync(id));
         }
 
-        public ActionResult DeleteVehicle(Guid id, Guid categoryId)
+        public ActionResult DeleteVehicle(Guid id)
         {
             vehicleService.DeleteVehicleAsync(id);
 
-            return RedirectToAction("GetAllVehicles");
+            return RedirectToAction("MuseumCategories");
         }
 
     }

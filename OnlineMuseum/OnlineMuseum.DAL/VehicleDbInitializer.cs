@@ -72,21 +72,26 @@ namespace OnlineMuseum.DAL
             //};
             //context.TimeCategories.Add(Past);
 
-            var Car1 = new VehicleModel()
+            for (int i = 0; i < 15; i++)
             {
-                Id = Guid.NewGuid(),
-                Name = "Punto",
-                Abrv = "Maco  called Mecava",
-                YearOfProduction = 2016,
-                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet lobortis sapie",
-                FunFacts = "A car called Mecava has been through enough trouble, distance, hills but the fastination stays in the fact that it still starts people!",
-                //TimeCategoryId = Past.Id,
-                VehicleCategoryId = Cars.Id,
-                VehicleMakerId = Opel.Id,
-                ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
-                ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
-            };
-            context.VehicleModels.Add(Car1);
+                var Car1 = new VehicleModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Punto",
+                    Abrv = "Maco  called Mecava",
+                    YearOfProduction = 2016,
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet lobortis sapie",
+                    FunFacts = "A car called Mecava has been through enough trouble, distance, hills but the fastination stays in the fact that it still starts people!",
+                    //TimeCategoryId = Past.Id,
+                    VehicleCategoryId = Cars.Id,
+                    VehicleMakerId = Opel.Id,
+                    ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
+                    ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
+                };
+
+                context.VehicleModels.Add(Car1);
+            }
+
 
             base.Seed(context);
         }
