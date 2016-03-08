@@ -19,6 +19,10 @@
     </div>
     <dl class="dl-horizontal">
 
+        <dt>
+            @Html.ActionLink("Maker", "GetVehicles", new { sortOrderByMaker = ViewBag.SortMaker })
+        </dt>
+
         @foreach (var item in Model)
         {
             <dt>
@@ -42,6 +46,6 @@
 
 @Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-default" })
 
-@Html.PagedListPager(Model, pageNumber => Url.Action("GetVehicles", new { pageNumber }))
+@Html.PagedListPager(Model, pageNumber => Url.Action("GetVehicles", new { pageNumber, findVehicle = ViewBag.CurrentSearch, makerId = ViewBag.CurrentMaker, sortOrderByMaker = ViewBag.CurrentSort }))
 
 

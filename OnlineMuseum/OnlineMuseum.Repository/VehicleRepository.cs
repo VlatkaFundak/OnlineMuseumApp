@@ -72,10 +72,8 @@ namespace OnlineMuseum.Repository
                 .Where(item => String.IsNullOrEmpty(filterVehicle.FindVehicle) ? item != null : item.Name.Contains(filterVehicle.FindVehicle))
                 .Where(item => filterVehicle.MakerId == Guid.Empty ? item != null : item.VehicleMakerId == filterVehicle.MakerId);
 
-            var sortedList = filteredListOfVehicles.OrderBy(sorting.VehicleCategory);
-
+            var sortedList = filteredListOfVehicles.OrderBy(sorting.VehicleMakerSort);
             var mappedList = mapper.Map<List<VehicleModelPoco>>(sortedList);
-
             var pagedList = mappedList.ToPagedList(paging.PageNumber, paging.PageSize);
             var pagedListOfVehicles = new StaticPagedList<VehicleModelPoco>(pagedList, pagedList.GetMetaData());
 

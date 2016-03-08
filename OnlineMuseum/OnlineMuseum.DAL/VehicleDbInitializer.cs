@@ -89,7 +89,23 @@ namespace OnlineMuseum.DAL
                     ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
                 };
 
+                var Car2 = new VehicleModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Audi",
+                    Abrv = "Maco  called Mecava",
+                    YearOfProduction = 2016,
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet lobortis sapie",
+                    FunFacts = "A car called Mecava has been through enough trouble, distance, hills but the fastination stays in the fact that it still starts people!",
+                    //TimeCategoryId = Past.Id,
+                    VehicleCategoryId = Cars.Id,
+                    VehicleMakerId = Aurora.Id,
+                    ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
+                    ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
+                };
+
                 context.VehicleModels.Add(Car1);
+                context.VehicleModels.Add(Car2);
             }
 
 

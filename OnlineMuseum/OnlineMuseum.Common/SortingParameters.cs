@@ -16,10 +16,10 @@ namespace OnlineMuseum.Common
         /// <summary>
         /// Sorting parameters constructor.
         /// </summary>
-        /// <param name="vehicleCategory">Vehicle category.</param>
-        public SortingParameters(string vehicleCategory)
+        /// <param name="vehicleMakerSort">Vehicle category.</param>
+        public SortingParameters(string vehicleMakerSort)
         {
-            this.VehicleCategory = vehicleCategory;
+            this.VehicleMakerSort = vehicleMakerSort;
         }
 
         #endregion
@@ -27,6 +27,6 @@ namespace OnlineMuseum.Common
         /// <summary>
         /// Gets or sets vehicle category.
         /// </summary>
-        public string VehicleCategory { get; set; }
+        public string VehicleMakerSort { get; set; }
     }
 }

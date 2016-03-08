@@ -9,6 +9,6 @@ namespace OnlineMuseum.Common
         /// <summary>
         /// Gets or sets vehicle category.
         /// </summary>
-        string VehicleCategory { get; set; }
+        string VehicleMakerSort { get; set; }
     }
 }
