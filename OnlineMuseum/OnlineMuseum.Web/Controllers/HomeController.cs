@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using PagedList.Mvc;
+using System.Net;
 
 using OnlineMuseum.Common;
 using OnlineMuseum.Models;
@@ -41,27 +42,46 @@ namespace OnlineMuseum.Web.Controllers
 
         #endregion
 
-        // GET: Home
+        /// <summary>
+        /// Index page.
+        /// </summary>
+        /// <returns>Index view.</returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Back to home page.
+        /// </summary>
+        /// <returns>Index view.</returns>
         public ActionResult BackToHomePage()
         {
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Back to categories.
+        /// </summary>
+        /// <returns>Categories view.</returns>
         public ActionResult BackToCategories()
         {
             return RedirectToAction("MuseumCategories");
         }
 
+        /// <summary>
+        /// Museum categories.
+        /// </summary>
+        /// <returns>All categories.</returns>
         public async Task<ActionResult> MuseumCategories()
         {            
             return View(await categoryService.GetAllCategoriesAsync());
         }
 
+        /// <summary>
+        /// New vehicle.
+        /// </summary>
+        /// <returns>Vehicle model.</returns>
         public async Task<ActionResult> NewVehicle()
         {
             ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
@@ -70,7 +90,11 @@ namespace OnlineMuseum.Web.Controllers
             return View(new VehicleModelPoco());
         }
 
-
+        /// <summary>
+        /// New vehicle.
+        /// </summary>
+        /// <param name="vehicle">Vehicle.</param>
+        /// <returns>Index view if model state is valid.</returns>
         [HttpPost]
         public async Task<ActionResult> NewVehicle(VehicleModelPoco vehicle)
         {
@@ -112,21 +136,39 @@ namespace OnlineMuseum.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get vehicles action.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <param name="makerId">Maker id.</param>
+        /// <param name="findVehicle">Find vehicle.</param>
+        /// <param name="pageNumber">Page number.</param>
+        /// <param name="pageSize">Page size.</param>
+        /// <param name="sortOrderByMaker">Sort order by maker.</param>
+        /// <returns>Vehicles.</returns>
         public async Task<ActionResult> GetVehicles(Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 12, string sortOrderByMaker= "VehicleMaker.Name")
-        {            
-            PagingParameters paging = new PagingParameters(pageNumber, pageSize);
-            VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
-            SortingParameters sortingFilter = new SortingParameters(sortOrderByMaker);
+        {       
+            try
+            {
+                PagingParameters paging = new PagingParameters(pageNumber, pageSize);
+                VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
+                SortingParameters sortingFilter = new SortingParameters(sortOrderByMaker);
 
-            ViewBag.SortMaker = sortOrderByMaker == "VehicleMaker.Name" ? "VehicleMaker.Name desc" : "VehicleMaker.Name";
+                ViewBag.SortMaker = sortOrderByMaker == "VehicleMaker.Name" ? "VehicleMaker.Name desc" : "VehicleMaker.Name";
 
-            ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
-            ViewBag.CurrentSort = sortOrderByMaker;
-            ViewBag.CurrentSearch = findVehicle;
-            ViewBag.CurrentMaker = makerId;
+                ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+                ViewBag.CurrentSort = sortOrderByMaker;
+                ViewBag.CurrentSearch = findVehicle;
+                ViewBag.CurrentMaker = makerId;
 
-            return View(await vehicleService.GetVehiclesAsync(paging, filtering, sortingFilter));            
-        }
+                return View(await vehicleService.GetVehiclesAsync(paging, filtering, sortingFilter));
+            }
+            catch
+            {
+                return new HttpNotFoundResult("There are no vehicles");
+            }
+       
+        }   
 
         /// <summary>
         /// More details about the vehicle.
@@ -135,14 +177,43 @@ namespace OnlineMuseum.Web.Controllers
         /// <returns>One vehicle.</returns>
         public async Task<ActionResult> MoreDetails(Guid id)
         {
-            return View(await vehicleService.GetOneVehicleAsync(id));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var details = await vehicleService.GetOneVehicleAsync(id);
+
+            if (details == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(details);
         }
 
-        public ActionResult DeleteVehicle(Guid id)
+        /// <summary>
+        /// Deletes vehicle.
+        /// </summary>
+        /// <param name="id">Id.</param>
+        /// <returns>Get vehicles page.</returns>
+        public async Task<ActionResult> DeleteVehicle(Guid id)
         {
-            vehicleService.DeleteVehicleAsync(id);
+            var vehicle =  await vehicleService.GetOneVehicleAsync(id);
+            var categoryId = vehicle.VehicleCategoryId;
 
-            return RedirectToAction("MuseumCategories");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else if (vehicle == null)
+            {
+                return HttpNotFound();
+            }
+
+            await vehicleService.DeleteVehicleAsync(id);
+
+            return RedirectToAction("GetVehicles", new { id = categoryId });
         }
     }
 }

@@ -25,7 +25,7 @@ namespace OnlineMuseum.Common
         #endregion
 
         /// <summary>
-        /// Gets or sets vehicle category.
+        /// Gets or sets vehicle maker.
         /// </summary>
         public string VehicleMakerSort { get; set; }
     }

@@ -84,7 +84,7 @@ namespace OnlineMuseum.DAL
                     FunFacts = "A car called Mecava has been through enough trouble, distance, hills but the fastination stays in the fact that it still starts people!",
                     //TimeCategoryId = Past.Id,
                     VehicleCategoryId = Cars.Id,
-                    VehicleMakerId = Opel.Id,
+                    VehicleMakerId = Fiat.Id,
                     ImageUrlOfThePast = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg",
                     ImageUrlOfThePresent = "http://i151.photobucket.com/albums/s131/sid23456/asd008-1.jpg"
                 };

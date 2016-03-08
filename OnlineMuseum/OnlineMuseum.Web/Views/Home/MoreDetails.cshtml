@@ -54,7 +54,7 @@
 }
 <br />
 
-@Html.ActionLink("Back", "BackToCategories", null, new { @class = "btn btn-default" })
+@Html.ActionLink("Back", null, null, new { @class = "btn btn-default", href = Request.UrlReferrer })
 
 @Html.ActionLink("Back to home page", "BackToHomePage", null, new { @class = "btn btn-primary" })
 

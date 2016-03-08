@@ -63,6 +63,13 @@ namespace OnlineMuseum.Repository
             return mapper.Map<VehicleModelPoco>(await vehicleContext.VehicleModels.FindAsync(id));
         }
 
+        /// <summary>
+        /// Gets vehicles.
+        /// </summary>
+        /// <param name="paging">Paging.</param>
+        /// <param name="filterVehicle">Filter vehicle.</param>
+        /// <param name="sorting">Sorting.</param>
+        /// <returns>Vehicles.</returns>
         public async Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle, ISortingParameters sorting)
         {
             var listOfVehicles = await vehicleContext.VehicleModels.ToListAsync();

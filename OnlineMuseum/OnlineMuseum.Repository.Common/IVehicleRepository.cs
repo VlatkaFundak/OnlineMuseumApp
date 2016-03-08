@@ -20,7 +20,13 @@ namespace OnlineMuseum.Repository.Common
         /// <returns>One vehicle.</returns>
         Task<IVehicleModel> GetOneVehicleAsync(Guid id);
 
-
+        /// <summary>
+        /// Gets vehicles.
+        /// </summary>
+        /// <param name="paging">Paging.</param>
+        /// <param name="filterVehicle">Filter vehicle.</param>
+        /// <param name="sorting">Sorting.</param>
+        /// <returns>Vehicles.</returns>
         Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle, ISortingParameters sorting);
 
         /// <summary>

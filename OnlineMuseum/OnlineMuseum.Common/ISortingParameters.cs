@@ -7,7 +7,7 @@ namespace OnlineMuseum.Common
     public interface ISortingParameters
     {
         /// <summary>
-        /// Gets or sets vehicle category.
+        /// Gets or sets vehicle maker.
         /// </summary>
         string VehicleMakerSort { get; set; }
     }

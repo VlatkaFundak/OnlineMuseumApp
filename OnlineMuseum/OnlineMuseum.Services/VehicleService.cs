@@ -58,6 +58,13 @@ namespace OnlineMuseum.Services
             return await vehicleRepository.GetOneVehicleAsync(id);
         }
 
+        /// <summary>
+        /// Gets vehicles.
+        /// </summary>
+        /// <param name="paging">Paging.</param>
+        /// <param name="filterVehicle">Filter vehicle.</param>
+        /// <param name="sorting">Sorting.</param>
+        /// <returns>Vehicles.</returns>
         public async Task<IEnumerable<IVehicleModel>> GetVehiclesAsync(IPagingParameters paging, IVehicleFilter filterVehicle, ISortingParameters sorting)
         {
             return await vehicleRepository.GetVehiclesAsync(paging, filterVehicle, sorting);
