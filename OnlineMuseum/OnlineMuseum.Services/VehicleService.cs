@@ -53,9 +53,9 @@ namespace OnlineMuseum.Services
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>One vehicle.</returns>
-        public async Task<IVehicleModel> GetOneVehicleAsync(Guid id)
+        public async Task<IVehicleModel> GetVehicleAsync(Guid id)
         {
-            return await vehicleRepository.GetOneVehicleAsync(id);
+            return await vehicleRepository.GetVehicleAsync(id);
         }
 
         /// <summary>

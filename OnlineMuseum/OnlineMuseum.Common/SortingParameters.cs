@@ -16,17 +16,25 @@ namespace OnlineMuseum.Common
         /// <summary>
         /// Sorting parameters constructor.
         /// </summary>
-        /// <param name="vehicleMakerSort">Vehicle category.</param>
-        public SortingParameters(string vehicleMakerSort)
+        /// <param name="sortOrder">Sort order.</param>
+        /// <param name="sortField">Sort field.</param>
+        public SortingParameters(string sortField, string sortOrder)
         {
-            this.VehicleMakerSort = vehicleMakerSort;
+            this.SortOrder = sortOrder;
+            this.SortField = sortField;
         }
 
         #endregion
 
         /// <summary>
-        /// Gets or sets vehicle maker.
+        /// Gets or sets sort order.
         /// </summary>
-        public string VehicleMakerSort { get; set; }
+        public string SortOrder { get; set; }
+
+        /// <summary>
+        /// Gets or sets sort field.
+        /// </summary>
+        public string SortField { get; set; }
+
     }
 }

@@ -17,14 +17,14 @@ namespace OnlineMuseum.Services.Common
         /// Gets all makers.
         /// </summary>
         /// <returns>Makers.</returns>
-        Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync();
+        Task<IEnumerable<IVehicleMaker>> GetMakersAsync();
 
         /// <summary>
         /// Gets one maker.
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>One maker.</returns>
-        Task<IVehicleMaker> GetOneMakerAsync(Guid id);
+        Task<IVehicleMaker> GetMakerAsync(Guid id);
 
     }
 }

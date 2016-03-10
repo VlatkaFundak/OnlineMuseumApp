@@ -51,7 +51,7 @@ namespace OnlineMuseum.Repository
         /// Gets all makers.
         /// </summary>
         /// <returns>Makers.</returns>
-        public async Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync()
+        public async Task<IEnumerable<IVehicleMaker>> GetMakersAsync()
         {
             return mapper.Map<IEnumerable<VehicleMakerPoco>>(await vehicleContext.VehicleMakers.ToListAsync());
         }
@@ -61,7 +61,7 @@ namespace OnlineMuseum.Repository
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>Maker.</returns>
-        public async Task<IVehicleMaker> GetOneMakerAsync(Guid id)
+        public async Task<IVehicleMaker> GetMakerAsync(Guid id)
         {
             return mapper.Map<VehicleMakerPoco>(await vehicleContext.VehicleMakers.FindAsync(id));
         }

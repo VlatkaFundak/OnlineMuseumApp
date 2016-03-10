@@ -43,9 +43,9 @@ namespace OnlineMuseum.Services
         /// Gets all categories.
         /// </summary>
         /// <returns>Categories.</returns>
-        public async Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync()
+        public async Task<IEnumerable<IVehicleCategory>> GetCategoriesAsync()
         {
-            return await categoryRepository.GetAllCategoriesAsync();
+            return await categoryRepository.GetCategoriesAsync();
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace OnlineMuseum.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>One category.</returns>
-        public async Task<IVehicleCategory> GetOneCategoryAsync(Guid id)
+        public async Task<IVehicleCategory> GetCategoryAsync(Guid id)
         {
-            return await categoryRepository.GetOneCategoryAsync(id);
+            return await categoryRepository.GetCategoryAsync(id);
         }
 
         /// <summary>

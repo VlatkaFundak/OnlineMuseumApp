@@ -75,7 +75,7 @@ namespace OnlineMuseum.Web.Controllers
         /// <returns>All categories.</returns>
         public async Task<ActionResult> MuseumCategories()
         {            
-            return View(await categoryService.GetAllCategoriesAsync());
+            return View(await categoryService.GetCategoriesAsync());
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace OnlineMuseum.Web.Controllers
         /// <returns>Vehicle model.</returns>
         public async Task<ActionResult> NewVehicle()
         {
-            ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
-            ViewBag.MakerCategories = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+            ViewBag.VehicleCategories = new SelectList(await categoryService.GetCategoriesAsync(), "Id", "Name");
+            ViewBag.MakerCategories = new SelectList(await makerService.GetMakersAsync(), "Id", "Name");
 
             return View(new VehicleModelPoco());
         }
@@ -104,8 +104,8 @@ namespace OnlineMuseum.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.VehicleCategories = new SelectList(await categoryService.GetAllCategoriesAsync(), "Id", "Name");
-            ViewBag.MakerCategories = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
+            ViewBag.VehicleCategories = new SelectList(await categoryService.GetCategoriesAsync(), "Id", "Name");
+            ViewBag.MakerCategories = new SelectList(await makerService.GetMakersAsync(), "Id", "Name");
 
             return View();
         }
@@ -137,27 +137,42 @@ namespace OnlineMuseum.Web.Controllers
         }
 
         /// <summary>
-        /// Get vehicles action.
+        /// Gets vehicles.
         /// </summary>
         /// <param name="id">Id.</param>
         /// <param name="makerId">Maker id.</param>
         /// <param name="findVehicle">Find vehicle.</param>
+        /// <param name="sortField">Sort field.</param>
+        /// <param name="sortOrder">Sort order.</param>
         /// <param name="pageNumber">Page number.</param>
         /// <param name="pageSize">Page size.</param>
-        /// <param name="sortOrderByMaker">Sort order by maker.</param>
+        /// <param name="sorting">Sorting.</param>
         /// <returns>Vehicles.</returns>
-        public async Task<ActionResult> GetVehicles(Guid id, Guid? makerId, string findVehicle, int pageNumber = 1, int pageSize = 12, string sortOrderByMaker= "VehicleMaker.Name")
+        public async Task<ActionResult> GetVehicles(Guid id, Guid? makerId, string findVehicle, string sortField, string sortOrder, int pageNumber = 1, int pageSize = 12, string sorting = "VehicleMaker.Name")
         {       
             try
             {
                 PagingParameters paging = new PagingParameters(pageNumber, pageSize);
                 VehicleFilter filtering = new VehicleFilter(id, findVehicle, makerId);
-                SortingParameters sortingFilter = new SortingParameters(sortOrderByMaker);
+                
+                ViewBag.SortMaker = sorting == "VehicleMaker.Name" ? "VehicleMaker.Name desc" : "VehicleMaker.Name";
 
-                ViewBag.SortMaker = sortOrderByMaker == "VehicleMaker.Name" ? "VehicleMaker.Name desc" : "VehicleMaker.Name";
+                if (sorting.Contains("desc"))
+                {
+                    string[] sorts = sorting.Split();
+                    sortField = sorts[0];
+                    sortOrder = sorts[1];
+                }
+                else
+                {
+                    sortField = sorting;
+                    sortOrder = "";
+                }
 
-                ViewBag.Makers = new SelectList(await makerService.GetAllMakersAsync(), "Id", "Name");
-                ViewBag.CurrentSort = sortOrderByMaker;
+                SortingParameters sortingFilter = new SortingParameters(sortField, sortOrder);
+
+                ViewBag.Makers = new SelectList(await makerService.GetMakersAsync(), "Id", "Name");
+                ViewBag.CurrentSort = sorting;
                 ViewBag.CurrentSearch = findVehicle;
                 ViewBag.CurrentMaker = makerId;
 
@@ -182,7 +197,7 @@ namespace OnlineMuseum.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var details = await vehicleService.GetOneVehicleAsync(id);
+            var details = await vehicleService.GetVehicleAsync(id);
 
             if (details == null)
             {
@@ -199,7 +214,7 @@ namespace OnlineMuseum.Web.Controllers
         /// <returns>Get vehicles page.</returns>
         public async Task<ActionResult> DeleteVehicle(Guid id)
         {
-            var vehicle =  await vehicleService.GetOneVehicleAsync(id);
+            var vehicle =  await vehicleService.GetVehicleAsync(id);
             var categoryId = vehicle.VehicleCategoryId;
 
             if (id == null)

@@ -18,12 +18,12 @@ namespace OnlineMuseum.Repository.Common
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>Maker.</returns>
-        Task<IVehicleMaker> GetOneMakerAsync(Guid id);
+        Task<IVehicleMaker> GetMakerAsync(Guid id);
 
         /// <summary>
         /// Gets all makers.
         /// </summary>
         /// <returns>Makers.</returns>
-        Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync();
+        Task<IEnumerable<IVehicleMaker>> GetMakersAsync();
     }
 }

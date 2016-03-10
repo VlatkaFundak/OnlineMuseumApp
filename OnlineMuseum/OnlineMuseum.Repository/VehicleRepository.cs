@@ -58,7 +58,7 @@ namespace OnlineMuseum.Repository
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>One vehicle.</returns>
-        public async Task<IVehicleModel> GetOneVehicleAsync(Guid id)
+        public async Task<IVehicleModel> GetVehicleAsync(Guid id)
         {
             return mapper.Map<VehicleModelPoco>(await vehicleContext.VehicleModels.FindAsync(id));
         }
@@ -79,7 +79,7 @@ namespace OnlineMuseum.Repository
                 .Where(item => String.IsNullOrEmpty(filterVehicle.FindVehicle) ? item != null : item.Name.Contains(filterVehicle.FindVehicle))
                 .Where(item => filterVehicle.MakerId == Guid.Empty ? item != null : item.VehicleMakerId == filterVehicle.MakerId);
 
-            var sortedList = filteredListOfVehicles.OrderBy(sorting.VehicleMakerSort);
+            var sortedList = filteredListOfVehicles.OrderBy(sorting.SortField + " " + sorting.SortOrder);
             var mappedList = mapper.Map<List<VehicleModelPoco>>(sortedList);
             var pagedList = mappedList.ToPagedList(paging.PageNumber, paging.PageSize);
             var pagedListOfVehicles = new StaticPagedList<VehicleModelPoco>(pagedList, pagedList.GetMetaData());

@@ -43,9 +43,9 @@ namespace OnlineMuseum.Services
         /// Gets all makers.
         /// </summary>
         /// <returns>Makers.</returns>
-        public async Task<IEnumerable<IVehicleMaker>> GetAllMakersAsync()
+        public async Task<IEnumerable<IVehicleMaker>> GetMakersAsync()
         {
-            return await makerRepository.GetAllMakersAsync();
+            return await makerRepository.GetMakersAsync();
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace OnlineMuseum.Services
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>One maker.</returns>
-        public async Task<IVehicleMaker> GetOneMakerAsync(Guid id)
+        public async Task<IVehicleMaker> GetMakerAsync(Guid id)
         {
-            return await makerRepository.GetOneMakerAsync(id);
+            return await makerRepository.GetMakerAsync(id);
         }
 
         #endregion

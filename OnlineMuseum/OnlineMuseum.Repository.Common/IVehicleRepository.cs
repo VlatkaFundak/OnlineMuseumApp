@@ -18,7 +18,7 @@ namespace OnlineMuseum.Repository.Common
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>One vehicle.</returns>
-        Task<IVehicleModel> GetOneVehicleAsync(Guid id);
+        Task<IVehicleModel> GetVehicleAsync(Guid id);
 
         /// <summary>
         /// Gets vehicles.

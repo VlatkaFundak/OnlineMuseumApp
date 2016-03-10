@@ -19,14 +19,14 @@ namespace OnlineMuseum.Repository.Common
         /// Gets all categories.
         /// </summary>
         /// <returns>Categories.</returns>
-        Task<IEnumerable<IVehicleCategory>> GetAllCategoriesAsync();
+        Task<IEnumerable<IVehicleCategory>> GetCategoriesAsync();
 
         /// <summary>
         /// Gets one category.
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>Category.</returns>
-        Task<IVehicleCategory> GetOneCategoryAsync(Guid id);
+        Task<IVehicleCategory> GetCategoryAsync(Guid id);
 
         /// <summary>
         /// Inserts new category.
